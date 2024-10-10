@@ -1,0 +1,7 @@
+../Core/Src/main.c:61:6:initTim2	4	static
+../Core/Src/main.c:79:6:InitClocks	4	static
+../Core/Src/main.c:85:6:SetPinMode	4	static
+../Core/Src/main.c:103:6:ConfigSpi	4	static
+../Core/Src/main.c:137:9:SPI_READ	24	static
+../Core/Src/main.c:163:6:InitSPI	8	static
+../Core/Src/main.c:214:5:main	40	static

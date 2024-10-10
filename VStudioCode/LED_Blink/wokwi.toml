@@ -1,0 +1,5 @@
+[wokwi]
+version = 1
+elf = "build/debug/FlashFiles/LED_Blink.elf"
+firmware = "build/debug/FlashFiles/LED_Blink.hex"
+gdbServerPort = 3333
