@@ -29,7 +29,7 @@ OPT = -Og
 # paths
 #######################################
 # Build path
-BUILD_DIR = build/debug
+BUILD_DIR = build/debug/build
 BUILD_DIR_FlashFiles = build/debug/FlashFiles
 
 ######################################
