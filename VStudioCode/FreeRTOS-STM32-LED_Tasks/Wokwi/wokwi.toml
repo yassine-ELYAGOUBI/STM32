@@ -1,0 +1,7 @@
+[wokwi]
+version = 1
+elf = "../build/debug/FlashFiles/FreeRTOS-STM32-LED_Tasks.elf"
+firmware = "../build/debug/FlashFiles/FreeRTOS-STM32-LED_Tasks.hex"
+bin = "../build/debug/FlashFiles/FreeRTOS-STM32-LED_Tasks.bin"
+rfc2217ServerPort = 4000
+gdbServerPort = 3333
