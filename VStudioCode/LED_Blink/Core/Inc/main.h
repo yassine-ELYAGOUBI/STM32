@@ -60,8 +60,6 @@ void Error_Handler(void);
 #define User_Button_Pin GPIO_PIN_13
 #define User_Button_GPIO_Port GPIOC
 #define User_Button_EXTI_IRQn EXTI4_15_IRQn
-#define Led_Pin GPIO_PIN_5
-#define Led_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 
