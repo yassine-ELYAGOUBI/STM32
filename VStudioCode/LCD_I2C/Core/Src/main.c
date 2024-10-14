@@ -22,7 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include <string.h>
+#include "LCD_I2C.h"
 
 /* USER CODE END Includes */
 
@@ -97,7 +97,8 @@ int main(void)
   MX_I2C1_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  I2C_Scan();
+  LCD_Init();
   char msg[] = "Hello!\r\n";
   HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
 
@@ -110,12 +111,25 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    // set address to 0x00
+    
+    
+    LCD_SetCursor(0,2);
+    LCD_SendString("Using 1602 LCD");
+
+    
+    LCD_SetCursor(1,0);
+    LCD_SendString("  over I2C bus");
+
     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_6);
     HAL_Delay(1000);
     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_6);
     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
     HAL_Delay(1000);
     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+
+    LCD_Clear();
+    HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
