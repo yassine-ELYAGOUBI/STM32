@@ -1,0 +1,5 @@
+[wokwi]
+version = 1
+elf = "build/debug/FlashFiles/LCD_I2C.elf"
+firmware = "build/debug/FlashFiles/LCD_I2C.hex"
+gdbServerPort = 3333
