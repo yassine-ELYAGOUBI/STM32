@@ -11,7 +11,10 @@
 #include "stm32c0xx_hal.h"
 #include <string.h>
 
-#define LCD_ADDR (0x27 << 1)
+extern LCD_ADDR_CONFIG;
+
+
+#define LCD_ADDR (LCD_ADDR_CONFIG << 1)
 
 #define PIN_RS    (1 << 0)
 #define PIN_EN    (1 << 2)

@@ -28,12 +28,12 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+int LCD_ADDR_CONFIG = 0x27;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+//LCD_ADDR_CONFIG = 0x27;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -97,7 +97,10 @@ int main(void)
   MX_I2C1_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+  LCD_ADDR_CONFIG = 0x22;
   I2C_Scan();
+  LCD_Init();
+  LCD_ADDR_CONFIG = 0x27;
   LCD_Init();
   char msg[] = "Hello!\r\n";
   HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
@@ -114,22 +117,41 @@ int main(void)
     // set address to 0x00
     
     
+    LCD_ADDR_CONFIG = 0x27;
     LCD_SetCursor(0,2);
-    LCD_SendString("Using 1602 LCD");
-
-    
+    LCD_SendString("Using 1602 LCD1");
     LCD_SetCursor(1,0);
     LCD_SendString("  over I2C bus");
-
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_6);
     HAL_Delay(1000);
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_6);
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-    HAL_Delay(1000);
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 
     LCD_Clear();
+    LCD_SetCursor(0,0);
+    LCD_SendString("LCD1 addr0x27");
     HAL_Delay(1000);
+    LCD_Clear();
+
+
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_6);
+    HAL_Delay(1000);
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_6);
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+    HAL_Delay(1000);
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+
+    LCD_ADDR_CONFIG = 0x22;
+    LCD_SetCursor(0,2);
+    LCD_SendString("Using 1602 LCD2");
+    LCD_SetCursor(1,0);
+    LCD_SendString("  over I2C bus");
+    HAL_Delay(1000);
+    
+    LCD_Clear();
+    LCD_SetCursor(0,0);
+    LCD_SendString("LCD1 addr 0x22");
+    HAL_Delay(1000); 
+    LCD_Clear();
+   
+  
   }
   /* USER CODE END 3 */
 }
