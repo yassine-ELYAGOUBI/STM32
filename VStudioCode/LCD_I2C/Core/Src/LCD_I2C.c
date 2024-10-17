@@ -109,3 +109,50 @@ void LCD_Clear() {
     LCD_SendCommand(0x01);
     HAL_Delay(2);  // Wait for 2 milliseconds
 }
+
+void LCD_ShiftText(const char *text, char direction, int delayMs, int durationMs) {
+
+    char displayBuffer[20];  //16x2 LCD display + extra space for shift
+    snprintf(displayBuffer, sizeof(displayBuffer), "  %s  ", text);  // Append some space to avoid sticking text 
+    int len = strlen(text)+1;
+    
+    // Add blank spaces at the end of the string
+    
+
+    uint32_t startTime = HAL_GetTick();  // Get the starting time in milliseconds
+
+    for (int shift = 0; ; shift++) {
+        // Check if the elapsed time has exceeded the specified duration
+        uint32_t elapsedTime = HAL_GetTick() - startTime;
+        if (elapsedTime >= durationMs) {
+            break;  // Stop shifting when the duration is exceeded
+        }
+
+        shift = shift % len;  // Normalize shift to avoid overflow
+
+        // Clear the display before shifting
+        LCD_Clear();
+
+        // Perform the shifting based on direction
+        if (direction == 'R' || direction == 'r') {  // Right shift
+            for (int i = 0; i < 16; i++) {
+                displayBuffer[i] = text[(len - shift + i) % len];  // Adjust index based on shift
+            }
+        } else if (direction == 'L' || direction == 'l') {  // Left shift
+            for (int i = 0; i < 16; i++) {
+                displayBuffer[i] = text[(shift + i) % len];
+            }
+        }
+
+        displayBuffer[16] = '\0';  // Null=terminate the display buffer
+
+        // Set the cursor to the beginning of the first line
+        LCD_SetCursor(0, 0);
+
+        // Write the shifted text to the LCD
+        LCD_SendString(displayBuffer);
+
+        // Add a delay to control the speed of the shift
+        HAL_Delay(delayMs);
+    }
+}

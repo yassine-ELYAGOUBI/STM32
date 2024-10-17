@@ -129,6 +129,9 @@ int main(void)
     LCD_SendString("LCD1 addr0x27");
     HAL_Delay(1000);
     LCD_Clear();
+    LCD_ShiftText("shifting the text to the right direction for 10 seconds",'R',60,10000);
+    HAL_Delay(1000);
+    LCD_Clear();
 
 
     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_6);
@@ -149,6 +152,9 @@ int main(void)
     LCD_SetCursor(0,0);
     LCD_SendString("LCD1 addr 0x22");
     HAL_Delay(1000); 
+    LCD_Clear();
+    LCD_ShiftText("shifting the text to the left direction for 10 seconds",'L',50,10000);
+    HAL_Delay(1000);
     LCD_Clear();
    
   

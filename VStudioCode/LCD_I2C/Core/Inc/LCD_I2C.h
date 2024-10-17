@@ -11,7 +11,7 @@
 #include "stm32c0xx_hal.h"
 #include <string.h>
 
-extern LCD_ADDR_CONFIG;
+extern LCD_ADDR_CONFIG; // address configuration
 
 
 #define LCD_ADDR (LCD_ADDR_CONFIG << 1)
@@ -31,4 +31,5 @@ void LCD_SendString(char *str);
 void init();
 void LCD_SetCursor(uint8_t col, uint8_t row);
 void LCD_Clear();
+void LCD_ShiftText(const char *text, char direction, int delayMs, int durationMs); // direction R,r for right and L,l for left
 #endif /* INC_LCD_I2C_H_ */
