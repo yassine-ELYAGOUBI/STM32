@@ -1,4 +1,5 @@
 build/debug/build
-.vscode
-*/STM32/VStudioCode/.vscode
-.vs
+.vscode/*
+.vs/*
+.settings/*
+.github/*
